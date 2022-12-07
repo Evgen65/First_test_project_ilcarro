@@ -8,7 +8,10 @@ public class ApplicationManager {
     public void  init() {
         wd = new ChromeDriver();
          wd.manage().window().maximize();
-        wd.navigate().to("https://ilcarro-1578153671498.web.app/search");
+        wd.navigate().to("https://ilcarro.web.app/search");
+    }
+
+    public void stop() {
     }
 }
 
