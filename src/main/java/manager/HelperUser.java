@@ -18,7 +18,7 @@ public class HelperUser extends HelperBase {
     }
 
     public void submitRegistration() {
-        click(By.xpath("//button[2]"));
+        click(By.xpath("(//button[contains(text(),'Y’alla!')])[1]"));
     }
 
     public boolean isLogged() {
@@ -36,5 +36,20 @@ public class HelperUser extends HelperBase {
     public void fillLoginForm(String email, String password) {
         type(By.xpath("//input[@id='email']"), email);
         type(By.xpath("//input[@id='password']"), password);
+    }
+
+    public void openRegistrationForm() {click(By.xpath("//a[text()=' Sign up ']"));
+    }
+
+    public void fillRegistrationForm(String name, String lastName,String email,String password) {
+        type(By.xpath("//input[@id='name']"),name);
+        type(By.xpath("//input[@id='lastName']"),lastName);
+        type(By.xpath("//input[@id='email']"), email);
+        type(By.xpath("//input[@id='password']"), password);
+    }
+
+    public void checkBox() {
+        click(By.xpath("//(//label[contains(text(),'I agree to the')])[1]"));
+
     }
 }

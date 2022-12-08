@@ -23,6 +23,26 @@ public class LoginTest extends TestBase {
         app.getUser().submitLogin();
 
     }
+    @Test
+    public void loginNegativeMail() {
+        User data = new User()
+                .withEmail("abcdmail.com")
+                .withPassword("Abcd1234$");
+        app.getUser().openLoginForm();
+        app.getUser().fillLoginForm("abcdmail.com", "Abcd1234$");
+        app.getUser().submitLogin();
+
+    }
+    @Test
+    public void loginNegativePass() {
+        User data = new User()
+                .withEmail("abcd@mail.com")
+                .withPassword("Abc");
+        app.getUser().openLoginForm();
+        app.getUser().fillLoginForm("abcd@mail.com", "Abc");
+        app.getUser().submitLogin();
+
+    }
 
     @AfterMethod
     public void postCondition() {
