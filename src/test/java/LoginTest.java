@@ -24,7 +24,16 @@ public class LoginTest extends TestBase {
         app.getUser().fillLoginForm("abcd@mail.com", "Abcd1234$");
         app.getUser().submitLogin();
         // Assert.assertTrue((app.getUser().isLoggedSuccess()));
-
+    }
+    @Test
+    public void loginSuccessModels() {
+        User data = new User()
+                .withEmail("abcd@mail.com")
+                .withPassword("Abcd1234$");
+        app.getUser().openLoginForm();
+        app.getUser().fillLoginForm(data);
+        app.getUser().submitLogin();
+        // Assert.assertTrue((app.getUser().isLoggedSuccess()));
 
     }
 
@@ -48,8 +57,6 @@ public class LoginTest extends TestBase {
         app.getUser().fillLoginForm("abcd@mail.com", "Abc");
         app.getUser().submitLogin();
         Assert.assertFalse(app.getUser().isElementPresent(By.xpath("//button[text()='Ok']")));
-
-
     }
 
     @AfterMethod

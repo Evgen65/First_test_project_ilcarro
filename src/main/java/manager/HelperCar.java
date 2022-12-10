@@ -5,21 +5,26 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HelperCar  extends HelperBase{
+public class HelperCar extends HelperBase {
     public HelperCar(WebDriver wd) {
         super(wd);
     }
 
     public void openCarForm() {
-        click(By.id("1"));
+        WebDriverWait wait=new WebDriverWait(wd,10);
+        click(By.cssSelector("a[ng-reflect-router-link='let-car-work']"));
     }
 
     public boolean isCarFormPresent() {
-        return new WebDriverWait(wd,10)
+        return new WebDriverWait(wd, 10)
                 .until(ExpectedConditions.textToBePresentInElement
-                        (wd.findElement(By.xpath("//h1[.=' Let the car work ']"))
-                                ," Let the car work "));
-
-
+                        (wd.findElement(By.xpath
+                                        ("//div//h1[.=' Let the car work ']"))
+                                , " Let the car work "));
     }
+
+
 }
+
+
+

@@ -41,21 +41,58 @@ public class HelperUser extends HelperBase {
         type(By.xpath("//input[@id='email']"), email);
         type(By.xpath("//input[@id='password']"), password);
     }
+//    public void fillLoginForm(User data) {
+//        fillEmail(data.getEmail());
+//        fillPassword(data.getPassword());
+//    }
 
-    public void openRegistrationForm() {click(By.xpath("//a[text()=' Sign up ']"));
+    public void openRegistrationForm() {
+        click(By.xpath("//a[text()=' Sign up ']"));
     }
 
-    public void fillRegistrationForm(String name, String lastName,String email,String password) {
-        type(By.xpath("//input[@id='name']"),name);
-        type(By.xpath("//input[@id='lastName']"),lastName);
+    public void fillRegistrationForm(String name, String lastName, String email, String password) {
+        type(By.xpath("//input[@id='name']"), name);
+        type(By.xpath("//input[@id='lastName']"), lastName);
         type(By.xpath("//input[@id='email']"), email);
         type(By.xpath("//input[@id='password']"), password);
     }
 
-    public void checkBox() {
-        click(By.xpath("//(//label[contains(text(),'I agree to the')])[1]"));
+    public void fillRegistrationForm(User data) {
+        fillName(data.getName());
+        fillLastName(data.getLastName());
+        fillEmail(data.getEmail());
+        fillPassword(data.getPassword());
+    }
+
+    public void fillLoginForm(User data) {
+        type(By.xpath("//input[@id='email']"), data.getEmail());
+        type(By.xpath("//input[@id='password']"), data.getPassword());
+    }
+
+    public void fillLoginNegativeForm(User data) {
+        fillEmail(data.getEmail());
+        fillPassword(data.getPassword());
+    }
+
+    private void fillName(String name) {
+        type(By.xpath("//input[@id='name']"), name);
+    }
+
+    private void fillLastName(String lastName) {
+        type(By.xpath("//input[@id='lastName']"), lastName);
 
     }
+
+    private void fillEmail(String email) {
+        pause(3000);
+        type(By.xpath("//input[@id='email']"), email);
+    }
+
+    private void fillPassword(String password) {
+        type(By.xpath("//input[@id='password']"), password);
+    }
+
+
 //    public boolean isLoggedSuccess(){
 //        WebDriverWait wait=new WebDriverWait(wd,5);
 //        WebElement element=wd.findElement((By.xpath("(//h2[text()='Logged in success'])[1]"))));
@@ -66,17 +103,15 @@ public class HelperUser extends HelperBase {
 //
 //    }
 
-    public void fillLoginForm(User data) {
-    }
 
-
-    public void fillLoginNegativeForm(User data) {
-    }
-    public void login(User user){
+    public void login(User user) {
         openLoginForm();
         fillLoginForm(user);
         submitLogin();
-        clickOkButton();
         pause(5);
+        clickOkButton();
+
     }
+
+
 }

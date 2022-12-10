@@ -29,7 +29,7 @@ public class User {
 
     }
 
-    public User withEmail(String email1) {
+    public User withEmail(String email) {
         this.email = email;
         return this;
     }
@@ -48,7 +48,7 @@ public class User {
         return name;
     }
 
-    public String getLasName() {
+    public String getLastName() {
         return lastName;
     }
 

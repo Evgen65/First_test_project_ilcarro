@@ -13,14 +13,15 @@ public class RegistrationTest extends TestBase {
 
     @Test
     public void loginSuccess() {
+        int i =(int)( (System.currentTimeMillis()/1000)%3600);
         User data = new User()
                 .withName("Vasia")
                 .withLastName("Pupkin")
-                .withEmail("abcd@mail.com")
+                .withEmail("name"+i+"@mail.com")
                 .withPassword("Abcd1234$");
         app.getUser().openRegistrationForm();
-        app.getUser().fillRegistrationForm("Vasia", "Pupkin", "abcd@mail.com", "Abcd1234$");
-       // app.getUser().checkBox();
+        app.getUser().fillRegistrationForm(data);
+        // app.getUser().checkBox();
         app.getUser().submitRegistration();
 
     }
