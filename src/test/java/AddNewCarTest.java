@@ -1,5 +1,8 @@
 import models.Car;
 import models.User;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +36,7 @@ public class AddNewCarTest extends TestBase {
                 .price("150")
                 .build();
 
-        app.getCar().pause(3);
+
         app.getCar().openCarForm();
         Assert.assertTrue((app.getCar().isCarFormPresent()));
 //        app.getCar().fillCarForm();
@@ -42,5 +45,5 @@ public class AddNewCarTest extends TestBase {
 
     }
 
-//    body > app-root:nth-child(1) > app-navigator:nth-child(1) > div:nth-child(1) > a:nth-child(3)
+//
 }
