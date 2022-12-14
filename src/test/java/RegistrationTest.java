@@ -12,17 +12,18 @@ public class RegistrationTest extends TestBase {
     }
 
     @Test
-    public void loginSuccess() {
+    public void registrationPositiveTest() {
         int i =(int)( (System.currentTimeMillis()/1000)%3600);
         User data = new User()
                 .withName("Vasia")
                 .withLastName("Pupkin")
-                .withEmail("name"+i+"@mail.com")
+                .withEmail("vasia"+i+"@mail.com")
                 .withPassword("Abcd1234$");
         app.getUser().openRegistrationForm();
         app.getUser().fillRegistrationForm(data);
-        // app.getUser().checkBox();
+        app.getUser().pause(10);
         app.getUser().submitRegistration();
+        app.getUser().clickOkButton();
 
     }
 

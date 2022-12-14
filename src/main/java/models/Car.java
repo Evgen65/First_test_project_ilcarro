@@ -19,7 +19,6 @@ public class Car {
     String fuel;
     String seats;
     String carClass;
-    String regNumber;
     String carRegNumber;
     String price;
 

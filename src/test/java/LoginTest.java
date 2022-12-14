@@ -25,6 +25,7 @@ public class LoginTest extends TestBase {
         app.getUser().submitLogin();
         // Assert.assertTrue((app.getUser().isLoggedSuccess()));
     }
+
     @Test
     public void loginSuccessModels() {
         User data = new User()
@@ -45,7 +46,8 @@ public class LoginTest extends TestBase {
         app.getUser().openLoginForm();
         app.getUser().fillLoginForm("abcd@mail.org", "Abcd1234$");
         app.getUser().submitLogin();
-        Assert.assertFalse(app.getUser().isElementPresent(By.xpath("//button[text()='Ok']")));
+        app.getUser().pause(3);
+        Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//h1[.='Login failed']")));
     }
 
     @Test

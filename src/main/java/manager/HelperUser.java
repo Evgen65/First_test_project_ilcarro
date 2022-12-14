@@ -22,7 +22,7 @@ public class HelperUser extends HelperBase {
     }
 
     public void submitRegistration() {
-        click(By.xpath("(//button[contains(text(),'Y’alla!')])[1]"));
+        click(By.cssSelector("button[type='submit']"));
     }
 
     public boolean isLogged() {
@@ -55,6 +55,7 @@ public class HelperUser extends HelperBase {
         type(By.xpath("//input[@id='lastName']"), lastName);
         type(By.xpath("//input[@id='email']"), email);
         type(By.xpath("//input[@id='password']"), password);
+
     }
 
     public void fillRegistrationForm(User data) {
@@ -62,6 +63,7 @@ public class HelperUser extends HelperBase {
         fillLastName(data.getLastName());
         fillEmail(data.getEmail());
         fillPassword(data.getPassword());
+        click(By.cssSelector("label[for='terms-of-use']"));
     }
 
     public void fillLoginForm(User data) {
@@ -108,8 +110,8 @@ public class HelperUser extends HelperBase {
         openLoginForm();
         fillLoginForm(user);
         submitLogin();
-        pause(5);
-        clickOkButton();
+       // pause(5);
+       // clickOkButton();
 
     }
 
