@@ -116,4 +116,10 @@ public class HelperUser extends HelperBase {
     }
 
 
+    public boolean isUserExist() {
+        WebDriverWait wait=new WebDriverWait(wd, 2000);
+        WebElement element=wd.findElement((By.xpath("//div/h2[contains(.,'User already exists')]")));
+        wait.until(ExpectedConditions.visibilityOf(element));
+        return element.getText().contains("User already exists");
+    }
 }
