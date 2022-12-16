@@ -24,6 +24,7 @@ public class RegistrationTest extends TestBase {
         app.getUser().fillRegistrationForm(data);
         app.getUser().submitRegistration();
         app.getUser().pause(3000);
+        Assert.assertTrue(app.getUser().isRegistred());
         app.getUser().clickOkButton();
 
     }

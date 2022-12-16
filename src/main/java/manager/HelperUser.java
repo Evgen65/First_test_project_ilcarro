@@ -1,9 +1,8 @@
 package manager;
 
 import models.User;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -63,7 +62,11 @@ public class HelperUser extends HelperBase {
         fillLastName(data.getLastName());
         fillEmail(data.getEmail());
         fillPassword(data.getPassword());
-        click(By.cssSelector("label[for='terms-of-use']"));
+        // click(By.cssSelector("label[for='terms-of-use']"));
+//        JavascriptExecutor js = (JavascriptExecutor) wd;
+//        js.executeScript("document.querySelector('#terms-of-use').click();");
+        checkPolicy();
+
     }
 
     public void fillLoginForm(User data) {
@@ -110,16 +113,40 @@ public class HelperUser extends HelperBase {
         openLoginForm();
         fillLoginForm(user);
         submitLogin();
-       // pause(5);
-       // clickOkButton();
+        // pause(5);
+        // clickOkButton();
 
     }
 
 
     public boolean isUserExist() {
-        WebDriverWait wait=new WebDriverWait(wd, 2000);
-        WebElement element=wd.findElement((By.xpath("//div/h2[contains(.,'User already exists')]")));
+        WebDriverWait wait = new WebDriverWait(wd, 2000);
+        WebElement element = wd.findElement((By.xpath("//div/h2[contains(.,'User already exists')]")));
         wait.until(ExpectedConditions.visibilityOf(element));
         return element.getText().contains("User already exists");
     }
+
+    public boolean isRegistred() {
+        WebDriverWait wait = new WebDriverWait(wd, 10);
+        wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.cssSelector(".dialog-container"))));
+        return wd.findElement(By.cssSelector(".dialog-container")).getText().contains("Registered");
+    }
+    //  click(By.cssSelector("label[for='terms-of-use']"));//var1
+    // JavascriptExecutor js = (JavascriptExecutor) wd;//var2
+    //js.executeScript("document.querySelector('#terms-of-use').click();");
+
+    public void checkPolicy() {
+        Rectangle rect=wd.findElement(By.cssSelector(".checkbox-container")).getRect();
+        int x=rect.getX()+5;
+        int y= rect.getY()+1/4*rect.getHeight();
+        Actions actions=new Actions(wd);
+        actions.moveByOffset(x,y).click().perform();
+//        Rectangle rect = wd.findElement(By.cssSelector(".checkbox-container")).getRect();
+//        int x = rect.getX() + 5;
+//        int y = rect.getY() + 1 / 4 * rect.getHeight();
+//        Actions actions = new Actions(wd);
+//        actions.moveByOffset(x, y).click().perform();
+    }
+
 }
+
