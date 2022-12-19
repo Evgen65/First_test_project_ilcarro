@@ -27,7 +27,7 @@ public class ApplicationManager {
 
     public void stop() {
     }
-    //разобрать возможность замены локаторов на java script
+    //razobrat vozmojnost zameni locatorov na java script
     //
 }
 

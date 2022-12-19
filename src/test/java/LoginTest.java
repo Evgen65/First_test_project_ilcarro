@@ -21,6 +21,7 @@ public class LoginTest extends TestBase {
                 .withEmail("abcd@mail.com")
                 .withPassword("Abcd1234$");
         app.getUser().openLoginForm();
+        app.getUser().pause(3000);
         app.getUser().fillLoginForm("abcd@mail.com", "Abcd1234$");
         app.getUser().submitLogin();
         // Assert.assertTrue((app.getUser().isLoggedSuccess()));
@@ -46,7 +47,7 @@ public class LoginTest extends TestBase {
         app.getUser().openLoginForm();
         app.getUser().fillLoginForm("abcd@mail.org", "Abcd1234$");
         app.getUser().submitLogin();
-        app.getUser().pause(3);
+        app.getUser().pause(3000);
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//h1[.='Login failed']")));
     }
 
@@ -63,7 +64,7 @@ public class LoginTest extends TestBase {
 
     @AfterMethod
     public void postCondition() {
-        app.getUser().pause(5);
+        app.getUser().pause(3000);
         app.getUser().clickOkButton();
     }
 }

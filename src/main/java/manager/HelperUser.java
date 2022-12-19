@@ -13,6 +13,7 @@ public class HelperUser extends HelperBase {
 
 
     public void submitLogin() {
+
         click(By.xpath("//button[@type='submit']"));
     }
 
@@ -33,19 +34,25 @@ public class HelperUser extends HelperBase {
     }
 
     public void openLoginForm() {
+//        JavascriptExecutor js = (JavascriptExecutor) wd;
+//        js.executeScript("document.querySelector('.navigation-link').click()");
         click(By.xpath("//a[text()=' Log in ']"));
     }
+
 
     public void fillLoginForm(String email, String password) {
         type(By.xpath("//input[@id='email']"), email);
         type(By.xpath("//input[@id='password']"), password);
     }
-//    public void fillLoginForm(User data) {
-//        fillEmail(data.getEmail());
-//        fillPassword(data.getPassword());
-//    }
+
+    public void fillLoginForm(User data) {
+        fillEmail(data.getEmail());
+        fillPassword(data.getPassword());
+    }
 
     public void openRegistrationForm() {
+
+
         click(By.xpath("//a[text()=' Sign up ']"));
     }
 
@@ -63,16 +70,19 @@ public class HelperUser extends HelperBase {
         fillEmail(data.getEmail());
         fillPassword(data.getPassword());
         // click(By.cssSelector("label[for='terms-of-use']"));
-//        JavascriptExecutor js = (JavascriptExecutor) wd;
-//        js.executeScript("document.querySelector('#terms-of-use').click();");
         checkPolicy();
 
     }
 
-    public void fillLoginForm(User data) {
-        type(By.xpath("//input[@id='email']"), data.getEmail());
-        type(By.xpath("//input[@id='password']"), data.getPassword());
+    public void fillRegistrationVar2(User data) {
+        fillName(data.getName());
+        fillLastName(data.getLastName());
+        fillEmail(data.getEmail());
+        fillPassword(data.getPassword());
+        JavascriptExecutor js = (JavascriptExecutor) wd;
+        js.executeScript("document.querySelector('#terms-of-use').click();");
     }
+
 
     public void fillLoginNegativeForm(User data) {
         fillEmail(data.getEmail());
@@ -94,7 +104,9 @@ public class HelperUser extends HelperBase {
     }
 
     private void fillPassword(String password) {
+
         type(By.xpath("//input[@id='password']"), password);
+
     }
 
 
@@ -127,26 +139,23 @@ public class HelperUser extends HelperBase {
     }
 
     public boolean isRegistred() {
-        WebDriverWait wait = new WebDriverWait(wd, 10);
-        wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.cssSelector(".dialog-container"))));
-        return wd.findElement(By.cssSelector(".dialog-container")).getText().contains("Registered");
+        WebDriverWait wait = new WebDriverWait(wd, 16);
+        wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//h1[text()='Registered']"))));
+        return wd.findElement(By.xpath(".//h1[text()='Registered']")).getText().contains("Registered");
     }
     //  click(By.cssSelector("label[for='terms-of-use']"));//var1
     // JavascriptExecutor js = (JavascriptExecutor) wd;//var2
     //js.executeScript("document.querySelector('#terms-of-use').click();");
 
     public void checkPolicy() {
-        Rectangle rect=wd.findElement(By.cssSelector(".checkbox-container")).getRect();
-        int x=rect.getX()+5;
-        int y= rect.getY()+1/4*rect.getHeight();
-        Actions actions=new Actions(wd);
-        actions.moveByOffset(x,y).click().perform();
-//        Rectangle rect = wd.findElement(By.cssSelector(".checkbox-container")).getRect();
-//        int x = rect.getX() + 5;
-//        int y = rect.getY() + 1 / 4 * rect.getHeight();
-//        Actions actions = new Actions(wd);
-//        actions.moveByOffset(x, y).click().perform();
+        Rectangle rect = wd.findElement(By.cssSelector(".checkbox-container")).getRect();
+        int x = rect.getX() + 5;
+        int y = rect.getY() + 1 / 4 * rect.getHeight();
+        Actions actions = new Actions(wd);
+        actions.moveByOffset(x, y).click().perform();
+
     }
+
 
 }
 
