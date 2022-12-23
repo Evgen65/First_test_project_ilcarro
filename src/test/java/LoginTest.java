@@ -1,10 +1,12 @@
+import manager.NGListener;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
+@Listeners(NGListener.class)
 public class LoginTest extends TestBase {
 
     @BeforeMethod
@@ -18,7 +20,8 @@ public class LoginTest extends TestBase {
     @Test
     public void loginSuccess() {
         User data = new User()
-                .withEmail("abcd@mail.com")
+
+                .withEmail("abc@dmail.com")
                 .withPassword("Abcd1234$");
         app.getUser().openLoginForm();
         app.getUser().pause(3000);
@@ -30,7 +33,8 @@ public class LoginTest extends TestBase {
     @Test
     public void loginSuccessModels() {
         User data = new User()
-                .withEmail("abcd@mail.com")
+               // .withEmail("abcd@mail.com")
+                .withEmail("abcdmail.com")
                 .withPassword("Abcd1234$");
         app.getUser().openLoginForm();
         app.getUser().fillLoginForm(data);

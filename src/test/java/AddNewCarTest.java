@@ -1,13 +1,16 @@
 import models.Car;
 import models.User;
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AddNewCarTest extends TestBase {
 
+
     @BeforeMethod
+
     public void preCondition() {
         if (app.getUser().isLogged() == false) {
             app.getUser()
@@ -21,6 +24,8 @@ public class AddNewCarTest extends TestBase {
 
     @Test
     public void addNewCarPositive() {
+        logger.info("Metod addNewCarPositive started");
+
         int i = (int) ((System.currentTimeMillis() / 1000) % 3600);
         Car car = Car.builder()
                 .address("Tel Aviv")
@@ -43,6 +48,7 @@ public class AddNewCarTest extends TestBase {
         app.getUser().pause(5000);
       //  Assert.assertTrue(app.getUser().getText(By.xpath("//h2[contains(.,'KIA Sportage added successful')]"))
        //         .contains("KIA Sportage"));
+        logger.info("Metod addNewCarPositive stopped with: \n" + car.toString());
     }
     @Test
     public void addNewCarNegative() {

@@ -34,8 +34,6 @@ public class HelperUser extends HelperBase {
     }
 
     public void openLoginForm() {
-//        JavascriptExecutor js = (JavascriptExecutor) wd;
-//        js.executeScript("document.querySelector('.navigation-link').click()");
         click(By.xpath("//a[text()=' Log in ']"));
     }
 
@@ -51,8 +49,6 @@ public class HelperUser extends HelperBase {
     }
 
     public void openRegistrationForm() {
-
-
         click(By.xpath("//a[text()=' Sign up ']"));
     }
 
@@ -66,11 +62,15 @@ public class HelperUser extends HelperBase {
 
     public void fillRegistrationForm(User data) {
         fillName(data.getName());
+        //fillName(null);
         fillLastName(data.getLastName());
         fillEmail(data.getEmail());
         fillPassword(data.getPassword());
-        // click(By.cssSelector("label[for='terms-of-use']"));
-        checkPolicy();
+        pause(3000);
+         click(By.cssSelector("label[for='terms-of-use']"));
+        //checkPolicy();
+//        JavascriptExecutor js = (JavascriptExecutor) wd;
+//        js.executeScript("document.querySelector('#terms-of-use').click();");
 
     }
 
@@ -79,6 +79,7 @@ public class HelperUser extends HelperBase {
         fillLastName(data.getLastName());
         fillEmail(data.getEmail());
         fillPassword(data.getPassword());
+
         JavascriptExecutor js = (JavascriptExecutor) wd;
         js.executeScript("document.querySelector('#terms-of-use').click();");
     }
@@ -139,7 +140,7 @@ public class HelperUser extends HelperBase {
     }
 
     public boolean isRegistred() {
-        WebDriverWait wait = new WebDriverWait(wd, 16);
+        WebDriverWait wait = new WebDriverWait(wd, 5);
         wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//h1[text()='Registered']"))));
         return wd.findElement(By.xpath(".//h1[text()='Registered']")).getText().contains("Registered");
     }
@@ -152,10 +153,12 @@ public class HelperUser extends HelperBase {
         int x = rect.getX() + 5;
         int y = rect.getY() + 1 / 4 * rect.getHeight();
         Actions actions = new Actions(wd);
-        actions.moveByOffset(x, y).click().perform();
+        //actions.moveByOffset(x, y).click().perform();
+        actions.moveToElement((WebElement) rect,x,y);
+    }
+    public void returnToHome() {
+        click(By.xpath(("//img[@alt='logo'][1]")));
 
     }
 
-
 }
-
