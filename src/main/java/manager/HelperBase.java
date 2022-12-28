@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class HelperBase {
     WebDriver wd;
