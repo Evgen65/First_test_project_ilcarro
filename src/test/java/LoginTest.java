@@ -17,7 +17,7 @@ public class LoginTest extends TestBase {
 
     }
 
-    @Test
+    @Test(priority = 1)
     public void loginSuccess() {
         User data = new User()
 
@@ -30,11 +30,11 @@ public class LoginTest extends TestBase {
         // Assert.assertTrue((app.getUser().isLoggedSuccess()));
     }
 
-    @Test
+    @Test(priority = 2)
     public void loginSuccessModels() {
         User data = new User()
                // .withEmail("abcd@mail.com")
-                .withEmail("abcdmail.com")
+                .withEmail("abcd@mail.com")
                 .withPassword("Abcd1234$");
         app.getUser().openLoginForm();
         app.getUser().fillLoginForm(data);
@@ -43,13 +43,13 @@ public class LoginTest extends TestBase {
 
     }
 
-    @Test
+    @Test(priority = 3)
     public void loginNegativeMail() {
         User data = new User()
                 .withEmail("abcd@mail.org")
                 .withPassword("Abcd1234$");
         app.getUser().openLoginForm();
-        app.getUser().fillLoginForm("abcd@mail.org", "Abcd1234$");
+        app.getUser().fillLoginForm("abcd65@mail.org", "Abcd1234$");
         app.getUser().submitLogin();
         app.getUser().pause(3000);
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//h1[.='Login failed']")));
@@ -68,7 +68,7 @@ public class LoginTest extends TestBase {
 
     @AfterMethod
     public void postCondition() {
-        app.getUser().pause(3000);
+        app.getUser().pause(1000);
         app.getUser().clickOkButton();
     }
 }

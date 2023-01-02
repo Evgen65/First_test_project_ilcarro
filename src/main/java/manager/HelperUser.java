@@ -67,10 +67,10 @@ public class HelperUser extends HelperBase {
         fillEmail(data.getEmail());
         fillPassword(data.getPassword());
         pause(3000);
-         click(By.cssSelector("label[for='terms-of-use']"));
+       //  click(By.cssSelector("label[for='terms-of-use']"));
         //checkPolicy();
-//        JavascriptExecutor js = (JavascriptExecutor) wd;
-//        js.executeScript("document.querySelector('#terms-of-use').click();");
+        JavascriptExecutor js = (JavascriptExecutor) wd;
+       js.executeScript("document.querySelector('#terms-of-use').click();");
 
     }
 
