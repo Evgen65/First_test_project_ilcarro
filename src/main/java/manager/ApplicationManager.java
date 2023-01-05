@@ -17,6 +17,10 @@ public class ApplicationManager {
     HelperUser user;
     HelperCar car;
     String browser;
+    HelperFindCar findCar;
+
+
+
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -38,6 +42,7 @@ public class ApplicationManager {
         wd.navigate().to("https://ilcarro.web.app/search");
         user = new HelperUser(wd);
         car = new HelperCar(wd);
+        findCar=new HelperFindCar(wd);
 
     }
 
@@ -47,6 +52,9 @@ public class ApplicationManager {
 
     public HelperUser getUser() {
         return user;
+    }
+    public HelperFindCar getFindCar() {
+        return findCar;
     }
 
     public void stop() {

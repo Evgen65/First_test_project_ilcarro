@@ -1,4 +1,5 @@
 import manager.NGListener;
+import manager.ProviderData;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -6,6 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 @Listeners(NGListener.class)
 public class LoginTest extends TestBase {
 
@@ -30,18 +32,15 @@ public class LoginTest extends TestBase {
         // Assert.assertTrue((app.getUser().isLoggedSuccess()));
     }
 
-    @Test(priority = 2)
-    public void loginSuccessModels() {
-        User data = new User()
-               // .withEmail("abcd@mail.com")
-                .withEmail("abcd@mail.com")
-                .withPassword("Abcd1234$");
+    @Test(dataProvider = "loginModelDTO", dataProviderClass = ProviderData.class)
+    public void loginSuccessModels(User user) {
+        logger.info(("User; " + user.toString()));
         app.getUser().openLoginForm();
-        app.getUser().fillLoginForm(data);
+        app.getUser().fillLoginForm(user);
         app.getUser().submitLogin();
-        // Assert.assertTrue((app.getUser().isLoggedSuccess()));
-
     }
+    // Assert.assertTrue((app.getUser().isLoggedSuccess()));
+
 
     @Test(priority = 3)
     public void loginNegativeMail() {
