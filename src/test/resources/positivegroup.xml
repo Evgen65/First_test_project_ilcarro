@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="positivegroup" verbose="1">
+    <groups>
+        <run>
+            <include name="positivegroup"/>
+        </run>
+    </groups>
+
+
+    <test name="positive_test">
+        <classes>
+
+            <class name="FindCarTest"/>
+        </classes>
+    </test>
+</suite>

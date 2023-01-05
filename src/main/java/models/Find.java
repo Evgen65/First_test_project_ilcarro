@@ -11,5 +11,11 @@ import lombok.ToString;
 public class Find {
     String city;
     String dates;
+    String firstDates;
+    String firstMonth;
+    String firstYear;
+    String lastDates;
+    String lastMonth;
+    String lastYear;
 
 }
