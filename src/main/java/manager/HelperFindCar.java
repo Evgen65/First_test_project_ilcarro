@@ -49,7 +49,6 @@ public class HelperFindCar extends HelperBase {
         pause(3000);
         click(By.cssSelector("div.pac-item"));
         pause(3000);
-
     }
 
     public void submitFindForm() {
@@ -68,7 +67,6 @@ public class HelperFindCar extends HelperBase {
     private void selectLastDates(String lastDates) {
         String locator = String.format("//div[text()= %s ]", lastDates);
         click(By.xpath(locator));
-
     }
     private void selectFirstDates(String firstDates) {
         String locator = String.format("//div[text()= %s ]", firstDates);
@@ -82,8 +80,6 @@ public class HelperFindCar extends HelperBase {
         click(By.xpath("//div[text()= 8]"));
         pause(2000);
         click(By.xpath("//div[text()= 11]"));
-
-
     }
 
     public void fillFindCarForm3(Find inform) {
@@ -100,8 +96,6 @@ public class HelperFindCar extends HelperBase {
         selectDay(inform.getFirstDates());
         pause(1500);
         selectLastDay(inform.getLastDates());
-
-
     }
 
     private void selectLastDay(String lastDates) {
@@ -118,7 +112,6 @@ public class HelperFindCar extends HelperBase {
         String locator = String.format("//div[.=' %s ']", firstMonth);
         click(By.xpath(locator));
     }
-
     private void selectYear(String firstYear) {
         String locator = String.format("//div[text()= %s ]", firstYear);
         click(By.xpath(locator));

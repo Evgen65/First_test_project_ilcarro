@@ -8,6 +8,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class ApplicationManager {
     Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
 
@@ -37,6 +39,7 @@ public class ApplicationManager {
             logger.info("Test on CHROME");
 
         }
+        wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wd.register(new MyListener());
         wd.manage().window().maximize();
         wd.navigate().to("https://ilcarro.web.app/search");

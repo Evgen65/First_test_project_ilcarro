@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class FindCarTest extends TestBase {
-
     @BeforeMethod(alwaysRun = true)
     public void precondition() {
         if (!app.getUser().isElementPresent(By.xpath("//h1[.='Find your car now!']"))) {
@@ -44,9 +43,7 @@ public class FindCarTest extends TestBase {
                 .firstDates("1")
                 .lastDates("5")
                 .firstMonth("JAN")
-
                 .firstYear("2024")
-
                 .build();
         app.getFindCar().fillFindCarForm3(inform);
         app.getFindCar().submitFindForm();
