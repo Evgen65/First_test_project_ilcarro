@@ -14,39 +14,23 @@ public class FindCarTest extends TestBase {
     }
     @Test(invocationCount = 1,groups = {"positivegroup","smokegroup"})
     public void findCarFirstWay() {
-      //  int i = (int) ((System.currentTimeMillis() / 1000) % 3600);
-        Find inform=Find.builder()
-                .city("Tel Aviv")
-                .dates("1/08/2023-1/11/2023")
-                .build();
-        app.getFindCar().fillFindCarForm(inform);
-        app.getFindCar().submitFindForm();
+        app.getFindCar().fillFindCarForm("Tel-Aviv","1/08/2023-1/11/2023");
+        app.getFindCar().submit();
         Assert.assertTrue(app.getFindCar().isElementPresent(By.xpath("//div[@class='search-results']")));
-        app.getUser().returnToHome();
+        app.getFindCar().openHomePage();
     }
     @Test(invocationCount = 1,groups = {"positivegroup","smokegroup"})
     public void findSecondWay(){
-        Find inform=Find.builder()
-                .city("Tel Aviv")
-                .firstDates("8")
-                .lastDates("11")
-                .build();
-        app.getFindCar().fillFindCarForm2(inform);
-        app.getFindCar().submitFindForm();
+        app.getFindCar().fillFindCarForm2("Tel-Aviv","2/8/2023","4/15/2023");
+        app.getFindCar().submit();
         Assert.assertTrue(app.getFindCar().isElementPresent(By.xpath("//div[@class='search-results']")));
-        app.getUser().returnToHome();
+      //  app.getFindCar().openHomePage();
     }
     @Test(invocationCount = 1,groups = {"positivegroup","smokegroup"})
     public void findThirdWay(){
-        Find inform=Find.builder()
-                .city("Tel Aviv")
-                .firstDates("1")
-                .lastDates("5")
-                .firstMonth("JAN")
-                .firstYear("2024")
-                .build();
-        app.getFindCar().fillFindCarForm3(inform);
-        app.getFindCar().submitFindForm();
+
+        app.getFindCar().fillFindCarForm3("Tel-Aviv","1/1/2024","1/7/2024");
+        app.getFindCar().submit();
         Assert.assertTrue(app.getFindCar().isElementPresent(By.xpath("//div[@class='search-results']")));
     }
 

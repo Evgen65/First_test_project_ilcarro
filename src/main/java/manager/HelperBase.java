@@ -28,6 +28,10 @@ public class HelperBase {
     public void click(By locator) {
         wd.findElement(locator).click();
     }
+    public void submit() {
+
+        click(By.xpath("//button[@type='submit']"));
+    }
 
     public void pause(int time) {
 //          wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

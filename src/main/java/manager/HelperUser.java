@@ -12,18 +12,18 @@ public class HelperUser extends HelperBase {
     }
 
 
-    public void submitLogin() {
-
-        click(By.xpath("//button[@type='submit']"));
-    }
+//    public void submitLogin() {
+//
+//        click(By.xpath("//button[@type='submit']"));
+//    }
 
     public void clickOkButton() {
         click(By.xpath("//button[text()='Ok']"));
     }
 
-    public void submitRegistration() {
-        click(By.cssSelector("button[type='submit']"));
-    }
+// //   public void submitRegistration() {
+//        click(By.cssSelector("button[type='submit']"));
+//    }
 
     public boolean isLogged() {
         return isElementPresent(By.xpath("//a[text()=' Logout ']"));
@@ -125,7 +125,7 @@ public class HelperUser extends HelperBase {
     public void login(User user) {
         openLoginForm();
         fillLoginForm(user);
-        submitLogin();
+        submit();
         // pause(5);
         // clickOkButton();
 

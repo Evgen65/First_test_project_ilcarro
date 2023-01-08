@@ -9,8 +9,7 @@ import org.testng.annotations.Test;
 public class AddNewCarTest extends TestBase {
 
 
-    @BeforeMethod
-
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         if (app.getUser().isLogged() == false) {
             app.getUser()

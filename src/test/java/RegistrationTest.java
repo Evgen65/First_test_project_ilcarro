@@ -25,7 +25,7 @@ public class RegistrationTest extends TestBase {
 
         app.getUser().openRegistrationForm();
         app.getUser().fillRegistrationForm(data);
-        app.getUser().submitRegistration();
+        app.getUser().submit();
         app.getUser().pause(2000);
       //  Assert.assertTrue(app.getUser().isLogged());
 
@@ -44,14 +44,14 @@ public class RegistrationTest extends TestBase {
 
         app.getUser().openRegistrationForm();
         app.getUser().fillRegistrationForm(data);
-        app.getUser().submitRegistration();
+        app.getUser().submit();
         app.getUser().pause(2000);
         app.getUser().clickOkButton();
         app.getUser().pause(1500);
         app.getUser().logout();
         app.getUser().openRegistrationForm();
         app.getUser().fillRegistrationForm(data);
-        app.getUser().submitRegistration();
+        app.getUser().submit();
         app.getUser().pause(1000);
         Assert.assertTrue(app.getUser().isUserExist());
         app.getUser().clickOkButton();
@@ -70,8 +70,8 @@ public class RegistrationTest extends TestBase {
 
         app.getUser().openRegistrationForm();
         app.getUser().fillRegistrationForm(data);
-        app.getUser().pause(3000);
-        app.getUser().submitRegistration();
+      //  app.getUser().pause(3000);
+        app.getUser().submit();
         Assert.assertTrue(app.getUser().isElementPresent(By.xpath("//div[contains(text()," +
                 "'Password must contain 1 uppercase letter, 1 lowerc')]")));
         app.getUser().returnToHome();

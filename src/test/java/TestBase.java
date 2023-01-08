@@ -15,21 +15,21 @@ public class TestBase {
     public static ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
     Logger logger= LoggerFactory.getLogger(TestBase.class);
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void setUp() {
         app.init();
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void startTest(Method m){
         logger.info("Start test " + m.getName());
     }
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void stopTest(Method m){
         logger.info("Stop test " + m.getName());
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         app.stop();
     }
