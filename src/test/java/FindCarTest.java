@@ -29,10 +29,13 @@ public class FindCarTest extends TestBase {
     @Test(invocationCount = 1,groups = {"positivegroup","smokegroup"})
     public void findThirdWay(){
 
-        app.getFindCar().fillFindCarForm3("Tel-Aviv","1/1/2024","1/7/2024");
+        app.getFindCar().fillFindCarForm3("Tel-Aviv","12/1/2023","1/7/2023");
         app.getFindCar().submit();
         Assert.assertTrue(app.getFindCar().isElementPresent(By.xpath("//div[@class='search-results']")));
     }
-
-
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod(){
+        app.getFindCar().openHomePage();
+        app.getFindCar().clearFindForm();
+    }
 }

@@ -25,12 +25,14 @@ public class HelperFindCar extends HelperBase {
                 .until(ExpectedConditions.visibilityOf
                         (wd.findElement(By.xpath("//h1[.='Find your car now!']"))));
     }
+
     public void fillFindCarForm(String city, String dates) {
         selectCity(city);
         WebElement al = wd.findElement(By.id("dates"));
-        al.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        //   al.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         selectDates(dates);
     }
+
     private void selectDates(String dates) {
         WebElement al = wd.findElement(By.xpath("//input[@id='dates']"));
         al.click();
@@ -40,7 +42,9 @@ public class HelperFindCar extends HelperBase {
         al.sendKeys(dates);
         al.sendKeys(Keys.ENTER);
     }
+
     private void selectCity(String city) {
+        clear(By.id("city"));
         type(By.id("city"), city);
         pause(3000);
         click(By.cssSelector("div.pac-item"));
@@ -51,7 +55,7 @@ public class HelperFindCar extends HelperBase {
         selectCity(city);
         WebElement al = wd.findElement(By.id("dates"));
         al.click();
-        al.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        //   al.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         pause(500);
         selectFirstDates(firstDates);
         selectLastDates(lastDates);
@@ -69,20 +73,22 @@ public class HelperFindCar extends HelperBase {
         click(By.xpath(lastLocator));
 
     }
+
     public void fillFindCarForm3(String city, String startDates, String endDates) {
         selectCity(city);
         WebElement al = wd.findElement(By.id("dates"));
-        al.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        // al.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         selectStartDate(startDates);
         selectFinishDate(endDates);
     }
+
     private void selectFinishDate(String endDates) {
         int nowToEndtMonth = 0;
         String[] finDate = endDates.split("/");
 
         if (LocalDate.now().getYear() == Integer.parseInt(finDate[2])) {
             pause(3000);
-          //  click(By.id("dates"));
+            //  click(By.id("dates"));
             if (LocalDate.now().getMonthValue() != Integer.parseInt(finDate[0])) {
                 nowToEndtMonth = Integer.parseInt(finDate[0]) - LocalDate.now().getMonthValue();
             }
@@ -93,7 +99,7 @@ public class HelperFindCar extends HelperBase {
             click(By.xpath(locatorEnd));
         } else if (LocalDate.now().getYear() != Integer.parseInt(finDate[2])) {
             pause(1000);
-          //  click(By.id("dates"));
+            //  click(By.id("dates"));
             click(By.xpath("//button[@aria-label='Choose month and year']"));
             String locatorEnd = String.format("//div[.=' %s ']", finDate[2]);
             click(By.xpath(locatorEnd));
@@ -103,6 +109,7 @@ public class HelperFindCar extends HelperBase {
             click(By.xpath(locatorEnd));
         }
     }
+
     private void selectStartDate(String startDates) {
         int nowToStartMonth = 0;
         String[] beginDate = startDates.split("/");
@@ -129,6 +136,16 @@ public class HelperFindCar extends HelperBase {
             locatorStart = String.format("//div[.=' %s ']", beginDate[1]);
             click(By.xpath(locatorStart));
         }
+    }
+
+    public void clearFindForm() {
+        clear(By.cssSelector("#city"));
+        //pause(3000);
+        click(By.id("dates"));
+        wd.findElement(By.id("dates")).sendKeys(Keys.CONTROL, "a");
+        wd.findElement(By.id("dates")).sendKeys(Keys.DELETE);
+        wd.findElement(By.id("dates")).sendKeys(Keys.ESCAPE);
+
     }
 
 
