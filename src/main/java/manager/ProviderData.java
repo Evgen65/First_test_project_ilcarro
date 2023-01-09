@@ -1,5 +1,6 @@
 package manager;
 
+import models.Find;
 import models.User;
 import org.testng.annotations.DataProvider;
 
@@ -30,7 +31,10 @@ public class ProviderData {
         });
         return list.iterator();
     }
-}
+
+    }
+
+
 
 
 
