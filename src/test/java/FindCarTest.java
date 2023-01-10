@@ -1,3 +1,5 @@
+import manager.DataProviderForFindCar;
+import manager.ProviderData;
 import models.Find;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -12,7 +14,6 @@ public class FindCarTest extends TestBase {
             app.getFindCar().openHomePage();
         }
     }
-
     @Test(invocationCount = 1, groups = {"positivegroup", "smokegroup"})
     public void findCarFirstWay() {
         Find find = Find.builder()
@@ -23,9 +24,8 @@ public class FindCarTest extends TestBase {
         app.getFindCar().fillFindCarForm(find.getCity(), find.getFirstDates(), find.getLastDates());
         app.getFindCar().submit();
         Assert.assertTrue(app.getFindCar().isElementPresent(By.xpath("//div[@class='search-results']")));
-        app.getFindCar().openHomePage();
+       // app.getFindCar().openHomePage();
     }
-
     @Test(invocationCount = 1, groups = {"positivegroup", "smokegroup"})
     public void findSecondWay() {
         Find find = Find.builder()
@@ -38,19 +38,18 @@ public class FindCarTest extends TestBase {
         Assert.assertTrue(app.getFindCar().isElementPresent(By.xpath("//div[@class='search-results']")));
         //  app.getFindCar().openHomePage();
     }
-
-    @Test(invocationCount = 1, groups = {"positivegroup", "smokegroup"})
-    public void findThirdWay() {
-        Find find = Find.builder()
-                .city("Tel-Aviv")
-                .firstDates("10/9/2023")
-                .lastDates("1/8/2024")
-                .build();
+    @Test(invocationCount = 1, groups = {"positivegroup", "smokegroup"}, dataProvider = "findCarModelDto", dataProviderClass = DataProviderForFindCar.class)
+    public void findThirdWay(Find find) {
         app.getFindCar().fillFindCarForm(find.getCity(), find.getFirstDates(), find.getLastDates());
         app.getFindCar().submit();
         Assert.assertTrue(app.getFindCar().isElementPresent(By.xpath("//div[@class='search-results']")));
     }
-
+    @Test(invocationCount = 1, groups = {"positivegroup", "smokegroup"})
+    public void findThirdWayFile(Find find) {
+        app.getFindCar().fillFindCarForm(find.getCity(), find.getFirstDates(), find.getLastDates());
+        app.getFindCar().submit();
+        Assert.assertTrue(app.getFindCar().isElementPresent(By.xpath("//div[@class='search-results']")));
+    }
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         app.getFindCar().openHomePage();
