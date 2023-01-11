@@ -1,3 +1,4 @@
+import manager.DataProviderForFindCar;
 import manager.NGListener;
 import manager.ProviderData;
 import models.User;
@@ -32,7 +33,7 @@ public class LoginTest extends TestBase {
         // Assert.assertTrue((app.getUser().isLoggedSuccess()));
     }
 
-    @Test(invocationCount = 1)
+    @Test(invocationCount = 1,groups = {"positivegroup", "smokegroup"}, dataProvider = "loginModelDto", dataProviderClass = ProviderData.class)
     public void loginSuccessModels(User user) {
         logger.info(("User; " + user.toString()));
         app.getUser().openLoginForm();
